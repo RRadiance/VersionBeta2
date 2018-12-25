@@ -9,14 +9,12 @@ import org.patriques.AlphaVantageConnector;
  *
  */
 public class AVAccessor {
-	private String apiKey;
-	private int timeout;
+	private static String apiKey = "5YOKEKYYTQZHPYM1";
+	private int timeout = 3000;
 	private AlphaVantageConnector apiConnector;
 	
 	public AVAccessor() {
-		this.apiKey = "5YOKEKYYTQZHPYM1";
-	    this.timeout = 3000;
-	    this.apiConnector = new AlphaVantageConnector(apiKey, timeout);
+	    this.apiConnector = new AlphaVantageConnector(AVAccessor.apiKey, this.timeout);
 	}
 	
 	public AlphaVantageConnector getAVConnector() {
