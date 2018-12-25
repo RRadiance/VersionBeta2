@@ -1,0 +1,8 @@
+Notes for AlphaVantage API:
+To see source files: https://github.com/patriques82/alphavantage4j/tree/master/src/main/java/org/patriques
+
+Stock Time Series
+
+Intraday:
+Interval parameter:
+INTERVAL.ONE_MIN (FIVE/TEN/FIFTEEN/THIRTY/SIXTY)
