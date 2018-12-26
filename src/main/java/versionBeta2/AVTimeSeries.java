@@ -8,7 +8,10 @@ import org.patriques.TimeSeries;
 import org.patriques.input.timeseries.Interval;
 import org.patriques.input.timeseries.OutputSize;
 import org.patriques.output.AlphaVantageException;
+import org.patriques.output.timeseries.Daily;
 import org.patriques.output.timeseries.IntraDay;
+import org.patriques.output.timeseries.Monthly;
+import org.patriques.output.timeseries.Weekly;
 import org.patriques.output.timeseries.data.StockData;
 
 /**
@@ -36,19 +39,16 @@ public class AVTimeSeries {
 	public void accessIntraday(String symbol, Interval interval, OutputSize outputSize) {
 		try {
 			IntraDay response = stockTimeSeries.intraDay(symbol, interval, outputSize);
-			Map<String, String> metaData = response.getMetaData();
+			
+			// Stores Map of metadata from JSON object
+			Map<String, String> metaData = response.getMetaData();			
 			System.out.println("Information: " + metaData.get("1. Information"));
 			System.out.println("Stock: " + metaData.get("2. Symbol"));
 
+			// The list stores StockData, which is a representation of a JSON object
 			List<StockData> stockData = response.getStockData();
-			stockData.forEach(stock -> {
-				System.out.println("date:   " + stock.getDateTime());
-				System.out.println("open:   " + stock.getOpen());
-				System.out.println("high:   " + stock.getHigh());
-				System.out.println("low:    " + stock.getLow());
-				System.out.println("close:  " + stock.getClose());
-				System.out.println("volume: " + stock.getVolume());
-			});
+			this.printUnadjustedTimeData(stockData);
+			
 		} catch (AlphaVantageException e) {
 			System.out.println("something went wrong");
 		}
@@ -60,7 +60,16 @@ public class AVTimeSeries {
 	 * @param outputSize
 	 */
 	public void accessDaily(String symbol, OutputSize outputSize) {
+		Daily response = stockTimeSeries.daily(symbol, outputSize);
 		
+		// Stores Map of metadata from JSON object
+		Map<String, String> metaData = response.getMetaData();			
+		System.out.println("Information: " + metaData.get("1. Information"));
+		System.out.println("Stock: " + metaData.get("2. Symbol"));
+
+		// The list stores StockData, which is a representation of a JSON object
+		List<StockData> stockData = response.getStockData();
+		this.printUnadjustedTimeData(stockData);
 	}
 	
 	/**
@@ -69,44 +78,160 @@ public class AVTimeSeries {
 	 * @param outputSize
 	 */
 	public void accessDailyAdjusted(String symbol, OutputSize outputSize) {
+		Daily response = stockTimeSeries.daily(symbol, outputSize);
+		
+		// Stores Map of metadata from JSON object
+		Map<String, String> metaData = response.getMetaData();			
+		System.out.println("Information: " + metaData.get("1. Information"));
+		System.out.println("Stock: " + metaData.get("2. Symbol"));
+
+		// The list stores StockData, which is a representation of a JSON object
+		List<StockData> stockData = response.getStockData();
+		this.printAdjustedDailyTimeData(stockData);
+	}
+	
+	/**
+	 * Gets Weekly time series data of a specified stock.
+	 * Note that weekly means last trading day of each week, 
+	 * weekly open, weekly high, weekly low, weekly close, weekly volume
+	 * 
+	 * @param symbol
+	 */
+	public void accessWeekly(String symbol) {
+		Weekly response = stockTimeSeries.weekly(symbol);
+
+		// Stores Map of metadata from JSON object
+		Map<String, String> metaData = response.getMetaData();
+		System.out.println("Information: " + metaData.get("1. Information"));
+		System.out.println("Stock: " + metaData.get("2. Symbol"));
+
+		// The list stores StockData, which is a representation of a JSON object
+		List<StockData> stockData = response.getStockData();
+		this.printUnadjustedTimeData(stockData);
+	}
+	
+	/**
+	 * Gets Adjusted Weekly time series data of a specified stock.
+	 * Note that weekly adjusted means last trading day of each week, 
+	 * weekly open, weekly high, weekly low, weekly close, weekly adjusted close, 
+	 * weekly volume, weekly dividend
+	 * 
+	 * @param symbol
+	 * @param outputSize
+	 */
+	public void accessWeeklyAdjusted(String symbol) {
+		Weekly response = stockTimeSeries.weekly(symbol);
+
+		// Stores Map of metadata from JSON object
+		Map<String, String> metaData = response.getMetaData();
+		System.out.println("Information: " + metaData.get("1. Information"));
+		System.out.println("Stock: " + metaData.get("2. Symbol"));
+
+		// The list stores StockData, which is a representation of a JSON object
+		List<StockData> stockData = response.getStockData();
+		this.printAdjustedTimeData(stockData);
 		
 	}
 	
 	/**
-	 * Gets Weekly time series data of a specified stock
+	 * Gets Monthly time series data of a specified stock.
+	 * Note that monthly  means last trading day of each month,
+	 * monthly open, monthly high, monthly low, monthly close, monthly volume.
+	 * 
+	 * @param symbol
+	 */
+	public void accessMonthly(String symbol) {
+		Monthly response = stockTimeSeries.monthly(symbol);
+
+		// Stores Map of metadata from JSON object
+		Map<String, String> metaData = response.getMetaData();
+		System.out.println("Information: " + metaData.get("1. Information"));
+		System.out.println("Stock: " + metaData.get("2. Symbol"));
+
+		// The list stores StockData, which is a representation of a JSON object
+		List<StockData> stockData = response.getStockData();
+		this.printUnadjustedTimeData(stockData);
+
+	}
+
+	/**
+	 * Gets Adjusted Monthly time series data of a specified stock.
+	 * Note that monthly adjusted means last trading day of each month, 
+	 * monthly open, monthly high, monthly low, monthly close, monthly adjusted close, 
+	 * monthly volume, monthly dividend.
+	 * 
 	 * @param symbol
 	 * @param outputSize
 	 */
-	public void accessWeekly(String symbol, OutputSize outputSize) {
-		
+	public void accessMonthlyAdjusted(String symbol) {
+		Monthly response = stockTimeSeries.monthly(symbol);
+
+		// Stores Map of metadata from JSON object
+		Map<String, String> metaData = response.getMetaData();
+		System.out.println("Information: " + metaData.get("1. Information"));
+		System.out.println("Stock: " + metaData.get("2. Symbol"));
+
+		// The list stores StockData, which is a representation of a JSON object
+		List<StockData> stockData = response.getStockData();
+		this.printAdjustedTimeData(stockData);
 	}
 	
 	/**
-	 * Gets Adjusted Weekly time series data of a specified stock
-	 * @param symbol
-	 * @param outputSize
+	 * Given a list of StockData, outputs data of each stock according to its time
+	 * 
+	 * @param stockData
 	 */
-	public void accessWeeklyAdjusted(String symbol, OutputSize outputSize) {
-		
+	private void printUnadjustedTimeData(List<StockData> stockData) {
+		for (StockData stock : stockData) {
+			System.out.println("date:   " + stock.getDateTime());
+			System.out.println("open:   " + stock.getOpen());
+			System.out.println("high:   " + stock.getHigh());
+			System.out.println("low:    " + stock.getLow());
+			System.out.println("close:  " + stock.getClose());
+			System.out.println("volume: " + stock.getVolume());
+		}
 	}
 	
 	/**
-	 * Gets Monthly time series data of a specified stock
-	 * @param symbol
-	 * @param outputSize
+	 * Given a list of StockData for adjusted time intervals,
+	 * outputs data of each stock according to its time.
+	 * This may be used for weekly and monthly adjusted
+	 * time intervals.
+	 * 
+	 * @param stockData
 	 */
-	public void accessMonthly(String symbol, OutputSize outputSize) {
-		
+	private void printAdjustedTimeData(List<StockData> stockData) {
+		for (StockData stock : stockData) {
+			System.out.println("date:     " + stock.getDateTime());
+			System.out.println("open:     " + stock.getOpen());
+			System.out.println("high:     " + stock.getHigh());
+			System.out.println("low:      " + stock.getLow());
+			System.out.println("close:    " + stock.getClose());
+			System.out.println("adj.clos: " + stock.getAdjustedClose());
+			System.out.println("volume: " + stock.getVolume());
+			System.out.println("dividend amnt: " + stock.getDividendAmount());
+		}
 	}
 	
 	/**
-	 * Gets Adjusted Monthly time series data of a specified stock
-	 * @param symbol
-	 * @param outputSize
+	 * Given a list of StockData for adjusted time intervals,
+	 * outputs data of each stock according to its time.
+	 * This may be used only for daily time intervals
+	 * 
+	 * @param stockData
 	 */
-	public void accessMonthlyAdjusted(String symbol, OutputSize outputSize) {
-		
+	private void printAdjustedDailyTimeData(List<StockData> stockData) {
+		for (StockData stock : stockData) {
+			System.out.println("date:     " + stock.getDateTime());
+			System.out.println("open:     " + stock.getOpen());
+			System.out.println("high:     " + stock.getHigh());
+			System.out.println("low:      " + stock.getLow());
+			System.out.println("close:    " + stock.getClose());
+			System.out.println("adj.clos: " + stock.getAdjustedClose());
+			System.out.println("volume: " + stock.getVolume());
+			System.out.println("dividend amnt: " + stock.getDividendAmount());
+			System.out.println("split coeff:   " + stock.getSplitCoefficient());
+		}
 	}
-	
 	
 }

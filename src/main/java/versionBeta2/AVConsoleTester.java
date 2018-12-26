@@ -25,8 +25,9 @@ public class AVConsoleTester {
 		while (!userInput.equals("end")) {
 			String symbol;
 			System.out.println("What would you like to do? Options include:");
-			System.out.println("Check Intraday [1], Daily [2], Weekly[3], Monthly [4]");
-			System.out.println("Type \"end\" to exit\n");
+			System.out.println("Check Intraday [1], Daily [2], Daily Adj [3], Weekly [4], \n"
+					+ "Weekly Adj [5], Monthly [6], Monthly Adj [7]");
+			System.out.println("Type \"end\" to exit");
 			userInput = scanner.nextLine();
 			
 			if(userInput.equals("end")) {
@@ -44,10 +45,19 @@ public class AVConsoleTester {
 				ts.accessDaily(symbol, OutputSize.COMPACT);
 				break;
 			case "3":
-				ts.accessWeekly(symbol, OutputSize.COMPACT);
+				ts.accessDailyAdjusted(symbol, OutputSize.COMPACT);
 				break;
 			case "4":
-				ts.accessWeekly(symbol, OutputSize.COMPACT);
+				ts.accessWeekly(symbol);
+				break;
+			case "5":
+				ts.accessWeeklyAdjusted(symbol);
+				break;
+			case "6":
+				ts.accessMonthly(symbol);
+				break;
+			case "7":
+				ts.accessMonthlyAdjusted(symbol);
 				break;
 			}
 		}
