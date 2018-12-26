@@ -15,6 +15,7 @@ import org.patriques.output.timeseries.Weekly;
 import org.patriques.output.timeseries.data.StockData;
 
 /**
+ * Access the Time Series data from the AlphaVantage API.
  * 
  * @author matthewhuynh
  *

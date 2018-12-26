@@ -4,20 +4,25 @@ import java.util.List;
 import java.util.Map;
 import java.util.Scanner;
 
-import org.patriques.input.timeseries.Interval;
+import org.patriques.input.technicalindicators.SeriesType;
+import org.patriques.input.technicalindicators.TimePeriod;
+import org.patriques.input.technicalindicators.Interval;
 import org.patriques.input.timeseries.OutputSize;
+import org.patriques.output.AlphaVantageException;
+import org.patriques.output.technicalindicators.MACD;
+import org.patriques.output.technicalindicators.data.MACDData;
 
 /**
- * Allows the user to use the console to test AlphaVantage classes by inputting
+ * Allows the user to use the console to test AVTechnicalIndicator by inputting
  * text.
  * 
  * @author matthewhuynh
  *
  */
-public class AVConsoleTester {
+public class AVTechnicalIndicatorsConsoleTester {
 	public static void main(String[] args) {
 		AVAccessor accessor = new AVAccessor();
-		AVTimeSeries ts = new AVTimeSeries(accessor);
+		AVTechnicalIndicators ti = new AVTechnicalIndicators(accessor);
 		String userInput = "";
 
 		Scanner scanner = new Scanner(System.in);
@@ -25,44 +30,27 @@ public class AVConsoleTester {
 		while (!userInput.equals("end")) {
 			String symbol;
 			System.out.println("What would you like to do? Options include:");
-			System.out.println("Check Intraday [1], Daily [2], Daily Adj [3], Weekly [4], \n"
-					+ "Weekly Adj [5], Monthly [6], Monthly Adj [7]");
+			System.out.println("MACD [1], EMA [2], SMA [3], MINUS_DI [4], \n" + "PLUS_DI [5], ATR [6]");
 			System.out.println("Type \"end\" to exit");
 			userInput = scanner.nextLine();
-			
-			if(userInput.equals("end")) {
+
+			if (userInput.equals("end")) {
 				break;
 			}
-			
+
 			// Asks user for symbol to check
 			System.out.println("Which symbol?");
 			symbol = scanner.nextLine();
 			switch (userInput) {
 			case "1":
-				ts.accessIntraday(symbol, Interval.ONE_MIN, OutputSize.COMPACT);
+				ti.accessMACD(symbol, Interval.DAILY);
 				break;
-			case "2":
-				ts.accessDaily(symbol, OutputSize.COMPACT);
-				break;
-			case "3":
-				ts.accessDailyAdjusted(symbol, OutputSize.COMPACT);
-				break;
-			case "4":
-				ts.accessWeekly(symbol);
-				break;
-			case "5":
-				ts.accessWeeklyAdjusted(symbol);
-				break;
-			case "6":
-				ts.accessMonthly(symbol);
-				break;
-			case "7":
-				ts.accessMonthlyAdjusted(symbol);
-				break;
+
 			}
 		}
 
 		System.out.println("End of main method");
 		scanner.close();
+
 	}
 }
