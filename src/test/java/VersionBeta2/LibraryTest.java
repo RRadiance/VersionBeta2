@@ -5,7 +5,7 @@ package VersionBeta2;
 
 import org.junit.Test;
 
-import versionBeta2.Library;
+import GUI.Library;
 
 import static org.junit.Assert.*;
 

@@ -1,7 +1,5 @@
-package versionBeta2;
+package AlphaVantageInterface;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import org.patriques.input.timeseries.Interval;

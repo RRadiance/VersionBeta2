@@ -1,16 +1,10 @@
-package versionBeta2;
+package AlphaVantageInterface;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Scanner;
 
 import org.patriques.input.technicalindicators.SeriesType;
 import org.patriques.input.technicalindicators.TimePeriod;
 import org.patriques.input.technicalindicators.Interval;
-import org.patriques.input.timeseries.OutputSize;
-import org.patriques.output.AlphaVantageException;
-import org.patriques.output.technicalindicators.MACD;
-import org.patriques.output.technicalindicators.data.MACDData;
 
 /**
  * Allows the user to use the console to test AVTechnicalIndicator by inputting

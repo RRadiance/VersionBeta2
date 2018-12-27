@@ -1,4 +1,4 @@
-package versionBeta2;
+package AlphaVantageInterface;
 
 import java.util.List;
 import java.util.Map;
@@ -17,8 +17,7 @@ import org.patriques.output.technicalindicators.PLUS_DI;
 import org.patriques.output.technicalindicators.SMA;
 import org.patriques.output.technicalindicators.data.IndicatorData;
 import org.patriques.output.technicalindicators.data.MACDData;
-import org.patriques.output.timeseries.IntraDay;
-import org.patriques.output.timeseries.data.StockData;
+
 
 /**
  * Access the Technical Indicators data from the

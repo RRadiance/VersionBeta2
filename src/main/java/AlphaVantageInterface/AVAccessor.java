@@ -1,4 +1,4 @@
-package versionBeta2;
+package AlphaVantageInterface;
 
 import org.patriques.AlphaVantageConnector;
 
