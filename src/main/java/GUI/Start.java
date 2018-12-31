@@ -2,6 +2,7 @@ package GUI;
 
 import javafx.application.Application;
 import javafx.stage.Stage;
+import AlphaVantageInterface.AVAccessor;
 
 public class Start extends Application {
 	
@@ -9,7 +10,6 @@ public class Start extends Application {
 	View view; // View + Controller
 	
 	public static void main(String[]args) {
-		
 		launch(args);
 	}
 	

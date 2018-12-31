@@ -18,6 +18,7 @@ public class View implements EventHandler<ActionEvent>{
 
 	private Scene primary;
 	private BorderPane root;
+	private CenterPanel centerNode;
 
 	/**
 	 * The constructor for View. 
@@ -42,8 +43,8 @@ public class View implements EventHandler<ActionEvent>{
 
 		// BorderPane root = new BorderPane();
 		root = new BorderPane();
-		ButtonChooserPanel leftNode = new ButtonChooserPanel(this);
-		CenterPanel centerNode = new CenterPanel(this.model);
+		ButtonChooserPanel leftNode = new ButtonChooserPanel(this.model, this);
+		centerNode = new CenterPanel(this.model);
 		
 		root.setLeft(leftNode);
 		root.setCenter(centerNode);
@@ -58,6 +59,10 @@ public class View implements EventHandler<ActionEvent>{
 		
 	}
 
+	public CenterPanel getCenterPanel() {
+		return this.centerNode;
+	}
+	
 	/**
 	 * Creates a menubar that is located at the top of the program.
 	 * 
@@ -125,6 +130,6 @@ public class View implements EventHandler<ActionEvent>{
 
 	@Override
 	public void handle(ActionEvent event) {
-		//System.out.println(((MenuItem) event.getSource()).getText());
+		System.out.println(((MenuItem) event.getSource()).getText());
 	}
 }
