@@ -12,13 +12,14 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class View implements EventHandler<ActionEvent>{
+public class ViewMain implements EventHandler<ActionEvent>{
 
 	private Model model;
 
 	private Scene primary;
 	private BorderPane root;
 	private CenterPanel centerNode;
+	private SymbolPanel symbolPanel;
 
 	/**
 	 * The constructor for View. 
@@ -26,7 +27,7 @@ public class View implements EventHandler<ActionEvent>{
 	 * @param model
 	 * @param stage
 	 */
-	public View(Model model, Stage stage) {
+	public ViewMain(Model model, Stage stage) {
 		this.model = model;
 		initUI(stage);
 	}
@@ -43,13 +44,15 @@ public class View implements EventHandler<ActionEvent>{
 
 		// BorderPane root = new BorderPane();
 		root = new BorderPane();
-		ButtonChooserPanel leftNode = new ButtonChooserPanel(this.model, this);
+		VBox leftNode = new VBox();
+		this.symbolPanel = new SymbolPanel(this.model, this);
+		leftNode.getChildren().add(symbolPanel);
+		leftNode.getChildren().add(new ButtonChooserPanel(this.model, this));
 		centerNode = new CenterPanel(this.model);
 		
 		root.setLeft(leftNode);
 		root.setCenter(centerNode);
 		root.setTop(createMenuBar());
-		
 
 		primary = new Scene(root);
 		stage.setScene(primary);
@@ -59,8 +62,24 @@ public class View implements EventHandler<ActionEvent>{
 		
 	}
 
+	public void createTimeSeriesDialogBox(String symbol) {
+		Stage timeSeriesDialogBox = new Stage();
+		TimeSeriesChooser timeSeriesChooser = new TimeSeriesChooser(this.model, symbol);
+		
+		
+		Scene secondary = new Scene(timeSeriesChooser);
+		timeSeriesDialogBox.setScene(secondary);
+		timeSeriesDialogBox.setTitle("Time Series Data");
+		timeSeriesDialogBox.show();
+		
+	}
+	
 	public CenterPanel getCenterPanel() {
 		return this.centerNode;
+	}
+	
+	public SymbolPanel getSymbolPanel() {
+		return this.symbolPanel;
 	}
 	
 	/**

@@ -7,7 +7,7 @@ import AlphaVantageInterface.AVAccessor;
 public class Start extends Application {
 	
 	Model model; // Model
-	View view; // View + Controller
+	ViewMain viewMain; // View + Controller
 	
 	public static void main(String[]args) {
 		launch(args);
@@ -15,9 +15,10 @@ public class Start extends Application {
 	
 	@Override
 	public void start(Stage stage) throws Exception {
+		System.out.println("javafx.runtime.version: " + System.getProperties().get("javafx.runtime.version"));
+		System.out.println(System.getProperty("user.home"));
+		
 		this.model = new Model();
-
-		// View + Controller
-		this.view = new View(model, stage);
+		this.viewMain = new ViewMain(model, stage);
 	}
 }

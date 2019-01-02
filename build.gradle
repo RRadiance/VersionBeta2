@@ -5,6 +5,27 @@
  * For more details take a look at the Java Libraries chapter in the Gradle
  * user guide available at https://docs.gradle.org/5.0/userguide/java_library_plugin.html
  */
+ buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.jengelman.gradle.plugins:shadow:1.2.4' 
+    }
+}
+apply plugin: 'com.github.johnrengelman.shadow'
+shadowJar {
+    baseName = 'shadow'
+    classifier = null
+    version = null
+}
+jar {
+    manifest {
+        attributes 'Class-Path': '/libs/a.jar'
+        attributes 'Main-Class': 'core.MyClassContainingMainMethod'
+    }
+}
+
 
 plugins {
     // Apply the java-library plugin to add support for Java Library
