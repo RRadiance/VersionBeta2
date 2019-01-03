@@ -36,9 +36,6 @@ public class ButtonChooserPanelController implements EventHandler<ActionEvent>{
 			break;
 		}
 		System.out.println(command);
-		
-		this.model.updateTextArea(this.viewMain);
-		//this.model.doSomething(); the model in turn then manipulates the view
 	}
 	
 	/**

@@ -1,11 +1,6 @@
 package GUI;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Slider;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
 public class ButtonChooserPanel extends VBox{
@@ -19,6 +14,7 @@ public class ButtonChooserPanel extends VBox{
 	public ButtonChooserPanel(Model model, ViewMain viewMain) {
 		this.viewMain = viewMain;
 		this.model = model;
+		this.setSpacing(10);
 		
 		Button getTSData = new Button("Get Time Series Data");
 		getTSData.setId("1");

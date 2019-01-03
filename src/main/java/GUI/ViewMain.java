@@ -8,7 +8,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -20,6 +19,8 @@ public class ViewMain implements EventHandler<ActionEvent>{
 	private BorderPane root;
 	private CenterPanel centerNode;
 	private SymbolPanel symbolPanel;
+	
+	private Stage timeSeriesDialogBox;
 
 	/**
 	 * The constructor for View. 
@@ -57,21 +58,38 @@ public class ViewMain implements EventHandler<ActionEvent>{
 		primary = new Scene(root);
 		stage.setScene(primary);
 		stage.setTitle("Version Beta");
+		stage.setResizable(false);
+		stage.setMinWidth(800);
+		stage.setMinHeight(500);
 		stage.show();
 
 		
 	}
 
+	/**
+	 * Create the dialog box that allows the user to choose what Time Series
+	 * time interval they would like to see for a given stock symbol.
+	 * 
+	 * @param symbol
+	 */
 	public void createTimeSeriesDialogBox(String symbol) {
-		Stage timeSeriesDialogBox = new Stage();
-		TimeSeriesChooser timeSeriesChooser = new TimeSeriesChooser(this.model, symbol);
-		
+		this.timeSeriesDialogBox = new Stage();
+		TimeSeriesChooser timeSeriesChooser = new TimeSeriesChooser(this, this.model, symbol);
 		
 		Scene secondary = new Scene(timeSeriesChooser);
 		timeSeriesDialogBox.setScene(secondary);
 		timeSeriesDialogBox.setTitle("Time Series Data");
 		timeSeriesDialogBox.show();
 		
+	}
+	
+	/**
+	 * Called from TimeSeriesChooserController, this closes the TimeSeriesDialogBox stage
+	 * (second window closes).
+	 * 
+	 */
+	public void closeTimeSeriesDialogBox() {
+		this.timeSeriesDialogBox.close();
 	}
 	
 	public CenterPanel getCenterPanel() {

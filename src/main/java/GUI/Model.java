@@ -1,14 +1,10 @@
 package GUI;
 
-import org.patriques.input.timeseries.Interval;
 import org.patriques.input.timeseries.OutputSize;
 
 import AlphaVantageInterface.AVAccessor;
 import AlphaVantageInterface.AVTechnicalIndicators;
 import AlphaVantageInterface.AVTimeSeries;
-
-import javafx.scene.Scene;
-import javafx.stage.Stage;
 
 public class Model {
 	private AVAccessor avAccessor;
@@ -21,8 +17,8 @@ public class Model {
 		avTechnicalIndicators = new AVTechnicalIndicators(avAccessor);
 	}
 	
-	public void updateTextArea(ViewMain viewMain) {
-		String text = "Test";
+	public void updateTextArea(ViewMain viewMain, String text) {
+		// text = "Test";
 		viewMain.getCenterPanel().setText(text);
 //		AVTimeSeries ts = new AVTimeSeries(avAccessor);
 //		ts.accessIntraday("AAPL", Interval.ONE_MIN, OutputSize.COMPACT);
@@ -40,23 +36,36 @@ public class Model {
 	 * @param symbol
 	 * @param timeType
 	 */
-	public void accessAVTimeSeries(String symbol, String timeType) {
+	public void accessAVTimeSeries(ViewMain viewMain, String symbol, String timeType) {
 		System.out.println(timeType);
+		String returnString;
 		switch(timeType) {
 		case "Daily":
-			//this.avTimeSeries.doMethod();
+			returnString = this.avTimeSeries.printDaily(symbol, OutputSize.COMPACT); //OutputSize.FULL 
+			this.updateTextArea(viewMain, returnString);
 			break;
 		case "Daily Adjusted":
+			returnString = this.avTimeSeries.printDailyAdjusted(symbol, OutputSize.COMPACT);
+			this.updateTextArea(viewMain, returnString);
 			break;
 		case "Weekly":
+			returnString = this.avTimeSeries.printWeekly(symbol);
+			this.updateTextArea(viewMain, returnString);
 			break;
 		case "Weekly Adjusted":
+			returnString = this.avTimeSeries.printWeeklyAdjusted(symbol);
+			this.updateTextArea(viewMain, returnString);
 			break;
 		case "Monthly":
+			returnString = this.avTimeSeries.printMonthly(symbol);
+			this.updateTextArea(viewMain, returnString);
 			break;
 		case "Monthly Adjusted":
+			returnString = this.avTimeSeries.printMonthlyAdjusted(symbol);
+			this.updateTextArea(viewMain, returnString);
 			break;
 		}
+		viewMain.getCenterPanel().changeMetaInformation("Showing " + timeType + " information for " + symbol);
 	}
 
 }

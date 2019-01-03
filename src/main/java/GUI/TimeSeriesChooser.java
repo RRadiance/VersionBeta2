@@ -3,16 +3,16 @@ package GUI;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Toggle;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.VBox;
 
 public class TimeSeriesChooser extends VBox{
 	private ToggleGroup toggleGroup;
 	private Model model;
+	private ViewMain viewMain;
 	
-	public TimeSeriesChooser(Model model, String symbol) {
+	public TimeSeriesChooser(ViewMain viewMain, Model model, String symbol) {
+		this.viewMain = viewMain;
 		this.model = model;
 		
 		// Displays symbol the user has previously chosen
@@ -49,7 +49,7 @@ public class TimeSeriesChooser extends VBox{
 		this.getChildren().add(monthlyAdjustedButton);
 		
 		Button getDataButton = new Button("Get Data");
-		getDataButton.setOnAction(new TimeSeriesChooserController(this.model, symbol, this));
+		getDataButton.setOnAction(new TimeSeriesChooserController(this.viewMain, this.model, symbol, this));
 		this.getChildren().add(getDataButton);
 		
 	}
