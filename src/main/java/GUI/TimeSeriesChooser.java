@@ -1,12 +1,14 @@
 package GUI;
 
+import javafx.geometry.Insets;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
-public class TimeSeriesChooser extends VBox{
+public class TimeSeriesChooser extends GridPane{
 	private ToggleGroup toggleGroup;
 	private Model model;
 	private ViewMain viewMain;
@@ -14,10 +16,12 @@ public class TimeSeriesChooser extends VBox{
 	public TimeSeriesChooser(ViewMain viewMain, Model model, String symbol) {
 		this.viewMain = viewMain;
 		this.model = model;
+		this.setPadding(new Insets(10,10,10,10));
+		this.setVgap(10);
 		
 		// Displays symbol the user has previously chosen
 		Label stockSymbol = new Label("Get data for: " + symbol.toUpperCase());
-		this.getChildren().add(stockSymbol);
+		this.add(stockSymbol, 1, 1);
 		
 		// Add buttons that allow user to choose what data they want to see
 		// Eventually, use loops to condense the code
@@ -40,18 +44,21 @@ public class TimeSeriesChooser extends VBox{
 		monthlyButton.setToggleGroup(toggleGroup);
 		monthlyAdjustedButton.setToggleGroup(toggleGroup);
 		
-		//this.getChildren().add(intradayButton);
-		this.getChildren().add(dailyButton);
-		this.getChildren().add(dailyAdjustedButton);
-		this.getChildren().add(weeklyButton);
-		this.getChildren().add(weeklyAdjustedButton);
-		this.getChildren().add(monthlyButton);
-		this.getChildren().add(monthlyAdjustedButton);
+		//this.add(intradayButton);
+		this.add(dailyButton, 1, 2);
+		this.add(dailyAdjustedButton, 1, 3);
+		this.add(weeklyButton, 1, 4);
+		this.add(weeklyAdjustedButton, 1, 5);
+		this.add(monthlyButton, 1, 6);
+		this.add(monthlyAdjustedButton, 1, 7);
 		
 		Button getDataButton = new Button("Get Data");
 		getDataButton.setOnAction(new TimeSeriesChooserController(this.viewMain, this.model, symbol, this));
-		this.getChildren().add(getDataButton);
+		this.add(getDataButton, 1, 8);
 		
+		Button cancelButton = new Button("Cancel");
+		cancelButton.setOnAction(new TimeSeriesChooserController(this.viewMain, this.model, symbol, this));
+		this.add(cancelButton, 2, 8);
 	}
 	
 	/**

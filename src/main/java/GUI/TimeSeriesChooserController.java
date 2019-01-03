@@ -2,6 +2,7 @@ package GUI;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.scene.control.Button;
 
 public class TimeSeriesChooserController implements EventHandler<ActionEvent> {
 	private Model model;
@@ -22,9 +23,15 @@ public class TimeSeriesChooserController implements EventHandler<ActionEvent> {
 	 */
 	@Override
 	public void handle(ActionEvent event) {
-		String radioButtonName = this.tsc.getToggledButton();
+		String command = ((Button) event.getSource()).getText();
 		this.viewMain.closeTimeSeriesDialogBox();
-		this.model.accessAVTimeSeries(this.viewMain, this.symbol, radioButtonName);
+		
+		// If the Get Data button was pressed, then we access the AV interface
+		if (command.equals("Get Data")) {
+			String radioButtonName = this.tsc.getToggledButton();
+			this.viewMain.closeTimeSeriesDialogBox();
+			this.model.accessAVTimeSeries(this.viewMain, this.symbol, radioButtonName);
+		}
 	}
 	
 }

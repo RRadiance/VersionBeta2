@@ -9,7 +9,9 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.SeparatorMenuItem;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class ViewMain implements EventHandler<ActionEvent>{
 
@@ -20,6 +22,7 @@ public class ViewMain implements EventHandler<ActionEvent>{
 	private CenterPanel centerNode;
 	private SymbolPanel symbolPanel;
 	
+	private Stage mainStage;
 	private Stage timeSeriesDialogBox;
 	private Stage technicalIndicatorsDialogBox;
 
@@ -31,6 +34,7 @@ public class ViewMain implements EventHandler<ActionEvent>{
 	 */
 	public ViewMain(Model model, Stage stage) {
 		this.model = model;
+		this.mainStage = stage;
 		initUI(stage);
 	}
 
@@ -72,9 +76,13 @@ public class ViewMain implements EventHandler<ActionEvent>{
 	 * time interval they would like to see for a given stock symbol.
 	 * 
 	 * @param symbol
-	 */
+	 */	
 	public void createTimeSeriesDialogBox(String symbol) {
 		this.timeSeriesDialogBox = new Stage();
+		//this.timeSeriesDialogBox.initStyle(StageStyle.UNDECORATED);
+		this.timeSeriesDialogBox.initModality(Modality.WINDOW_MODAL);
+		this.timeSeriesDialogBox.initOwner(this.mainStage);
+		
 		TimeSeriesChooser timeSeriesChooser = new TimeSeriesChooser(this, this.model, symbol);
 		
 		Scene secondary = new Scene(timeSeriesChooser);
@@ -92,6 +100,10 @@ public class ViewMain implements EventHandler<ActionEvent>{
 	 */
 	public void createTechnicalIndicatorsDialogBox(String symbol) {
 		this.technicalIndicatorsDialogBox = new Stage();
+		//this.technicalIndicatorsDialogBox.initStyle(StageStyle.UNDECORATED);
+		this.technicalIndicatorsDialogBox.initModality(Modality.WINDOW_MODAL);
+		this.technicalIndicatorsDialogBox.initOwner(this.mainStage);
+		
 		TechnicalIndicatorChooser tic = new TechnicalIndicatorChooser(this, this.model, symbol);
 		
 		Scene secondary = new Scene(tic);
