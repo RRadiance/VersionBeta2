@@ -21,21 +21,25 @@ public class ButtonChooserPanelController implements EventHandler<ActionEvent>{
 	@Override
 	public void handle(ActionEvent event) {
 		String command = ((Button) event.getSource()).getId();
-
-		switch(command) {
-		case "1": // Get Time Series Data
-			String symbol = this.viewMain.getSymbolPanel().getSymbol();
-			if(symbol.length() > 0) {
+		String symbol = this.viewMain.getSymbolPanel().getSymbol();
+		
+		// Check to see if symbol is of valid length
+		if(symbol.length() > 0) {
+			switch(command) {
+			// If user chooses Time Series
+			case "1":
 				this.model.openTimeSeriesDialogBox(this.viewMain, symbol);
+				break;
+			// If user chooses Technical Indicators
+			case "2":
+				this.model.openTechnicalIndicatorsDialogBox(this.viewMain, symbol);
+				break;
 			}
-			else {
-				createErrorDialog();
-			}
-			break;
-		case "2": // Get Technical Indicators Data
-			break;
 		}
-		System.out.println(command);
+		else {
+			createErrorDialog();
+		}
+		//System.out.println(command);
 	}
 	
 	/**

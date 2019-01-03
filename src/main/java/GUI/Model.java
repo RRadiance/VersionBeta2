@@ -24,8 +24,26 @@ public class Model {
 //		ts.accessIntraday("AAPL", Interval.ONE_MIN, OutputSize.COMPACT);
 	}
 	
+	/**
+	 * Tells the View to create a new dialog box that shows
+	 * time series data options
+	 * 
+	 * @param viewMain
+	 * @param symbol
+	 */
 	public void openTimeSeriesDialogBox(ViewMain viewMain, String symbol) {
 		viewMain.createTimeSeriesDialogBox(symbol);
+	}
+	
+	/**
+	 * Tells the View to create a new dialog box that shows
+	 * technical indicator data options
+	 * 
+	 * @param viewMain
+	 * @param symbol
+	 */
+	public void openTechnicalIndicatorsDialogBox(ViewMain viewMain, String symbol) {
+		viewMain.createTechnicalIndicatorsDialogBox(symbol);
 	}
 	
 	/**
@@ -66,6 +84,11 @@ public class Model {
 			break;
 		}
 		viewMain.getCenterPanel().changeMetaInformation("Showing " + timeType + " information for " + symbol);
+	}
+	
+	public void accessAVTechnicalIndicators(ViewMain viewMain, String symbol, String tiType) {
+		System.out.println(symbol);
+		System.out.println(tiType);
 	}
 
 }

@@ -21,6 +21,7 @@ public class ViewMain implements EventHandler<ActionEvent>{
 	private SymbolPanel symbolPanel;
 	
 	private Stage timeSeriesDialogBox;
+	private Stage technicalIndicatorsDialogBox;
 
 	/**
 	 * The constructor for View. 
@@ -77,19 +78,43 @@ public class ViewMain implements EventHandler<ActionEvent>{
 		TimeSeriesChooser timeSeriesChooser = new TimeSeriesChooser(this, this.model, symbol);
 		
 		Scene secondary = new Scene(timeSeriesChooser);
-		timeSeriesDialogBox.setScene(secondary);
-		timeSeriesDialogBox.setTitle("Time Series Data");
-		timeSeriesDialogBox.show();
+		this.timeSeriesDialogBox.setScene(secondary);
+		this.timeSeriesDialogBox.setTitle("Time Series Data");
+		this.timeSeriesDialogBox.show();
 		
 	}
 	
 	/**
-	 * Called from TimeSeriesChooserController, this closes the TimeSeriesDialogBox stage
+	 * Create the dialog box that allows the user to choose which technical
+	 * indicator they would like to see for a given stock symbol.
+	 * 
+	 * @param symbol
+	 */
+	public void createTechnicalIndicatorsDialogBox(String symbol) {
+		this.technicalIndicatorsDialogBox = new Stage();
+		TechnicalIndicatorChooser tic = new TechnicalIndicatorChooser(this, this.model, symbol);
+		
+		Scene secondary = new Scene(tic);
+		this.technicalIndicatorsDialogBox.setScene(secondary);;
+		this.technicalIndicatorsDialogBox.setTitle("Technical Indicator Data");
+		this.technicalIndicatorsDialogBox.show();
+	}
+	
+	/**
+	 * Called from TimeSeriesChooserController, this closes the timeSeriesDialogBox stage
 	 * (second window closes).
 	 * 
 	 */
 	public void closeTimeSeriesDialogBox() {
 		this.timeSeriesDialogBox.close();
+	}
+	
+	/**
+	 * Called from TechnicalIndChooserController, this closes the technicalIndicatorsDialogBox
+	 * stage.
+	 */
+	public void closeTechnicalIndicatorsDialogBox() {
+		this.technicalIndicatorsDialogBox.close();
 	}
 	
 	public CenterPanel getCenterPanel() {
