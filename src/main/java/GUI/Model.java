@@ -59,60 +59,70 @@ public class Model {
 	 */
 	public void accessAVTimeSeries(ViewMain viewMain, String symbol, String timeType) {
 		System.out.println(timeType);
-		String returnString;
-		switch(timeType) {
-		case "Daily":
-			returnString = this.avTimeSeries.printDaily(symbol, OutputSize.COMPACT); //OutputSize.FULL 
-			this.updateTextArea(viewMain, returnString);
-			break;
-		case "Daily Adjusted":
-			returnString = this.avTimeSeries.printDailyAdjusted(symbol, OutputSize.COMPACT);
-			this.updateTextArea(viewMain, returnString);
-			break;
-		case "Weekly":
-			returnString = this.avTimeSeries.printWeekly(symbol);
-			this.updateTextArea(viewMain, returnString);
-			break;
-		case "Weekly Adjusted":
-			returnString = this.avTimeSeries.printWeeklyAdjusted(symbol);
-			this.updateTextArea(viewMain, returnString);
-			break;
-		case "Monthly":
-			returnString = this.avTimeSeries.printMonthly(symbol);
-			this.updateTextArea(viewMain, returnString);
-			break;
-		case "Monthly Adjusted":
-			returnString = this.avTimeSeries.printMonthlyAdjusted(symbol);
-			this.updateTextArea(viewMain, returnString);
-			break;
+		String returnString = "Something went wrong with retrieving data for " + symbol + 
+				".\nPlease check the symbol and your internet connection and try again.";
+		try {
+			switch (timeType) {
+			case "Daily":
+				returnString = this.avTimeSeries.printDaily(symbol, OutputSize.COMPACT); // OutputSize.FULL
+				break;
+			case "Daily Adjusted":
+				returnString = this.avTimeSeries.printDailyAdjusted(symbol, OutputSize.COMPACT);
+				break;
+			case "Weekly":
+				returnString = this.avTimeSeries.printWeekly(symbol);
+				break;
+			case "Weekly Adjusted":
+				returnString = this.avTimeSeries.printWeeklyAdjusted(symbol);
+				break;
+			case "Monthly":
+				returnString = this.avTimeSeries.printMonthly(symbol);
+				break;
+			case "Monthly Adjusted":
+				returnString = this.avTimeSeries.printMonthlyAdjusted(symbol);
+				break;
+			}
+		} catch (Exception e) {
+			returnString = "Something went wrong with retrieving data for " + symbol + 
+					".\nPlease check the symbol and your internet connection and try again." +
+					"\nDeveloper Notes: See exception in Model.accessAVTimeSeries";
 		}
+		this.updateTextArea(viewMain, returnString);
 		viewMain.getCenterPanel().changeMetaInformation("Showing " + timeType + " information for " + symbol);
 	}
-	
+
 	public void accessAVTechnicalIndicators(ViewMain viewMain, String symbol, String tiType) {
 //		System.out.println(symbol);
 //		System.out.println(tiType);
-		String returnString = "";
-		switch(tiType) {
-		case "SMA":
-			returnString = this.avTechnicalIndicators.printSMA(symbol, Interval.WEEKLY, TimePeriod.of(10), SeriesType.CLOSE);
-			break;
-		case "EMA":
-			returnString = this.avTechnicalIndicators.printEMA(symbol, Interval.WEEKLY, TimePeriod.of(10), SeriesType.CLOSE);
-			break;
-		case "MACD":
-			returnString = this.avTechnicalIndicators.printMACD(symbol, Interval.WEEKLY);
-			break;
-		case "-DI":
-			returnString = this.avTechnicalIndicators.printMinusDI(symbol, Interval.WEEKLY, TimePeriod.of(10));
-			break;
-		case "+DI":
-			returnString = this.avTechnicalIndicators.printPlusDI(symbol, Interval.WEEKLY, TimePeriod.of(10));
-			break;
-		case "ATR":
-			returnString = this.avTechnicalIndicators.printATR(symbol, Interval.WEEKLY, TimePeriod.of(10));
-			break;
+		String returnString = "Something went wrong with retrieving data for " + symbol + 
+				".\nPlease check the symbol and your internet connection and try again.";
+		try {
+			switch(tiType) {
+			case "SMA":
+				returnString = this.avTechnicalIndicators.printSMA(symbol, Interval.WEEKLY, TimePeriod.of(10), SeriesType.CLOSE);
+				break;
+			case "EMA":
+				returnString = this.avTechnicalIndicators.printEMA(symbol, Interval.WEEKLY, TimePeriod.of(10), SeriesType.CLOSE);
+				break;
+			case "MACD":
+				returnString = this.avTechnicalIndicators.printMACD(symbol, Interval.WEEKLY);
+				break;
+			case "-DI":
+				returnString = this.avTechnicalIndicators.printMinusDI(symbol, Interval.WEEKLY, TimePeriod.of(10));
+				break;
+			case "+DI":
+				returnString = this.avTechnicalIndicators.printPlusDI(symbol, Interval.WEEKLY, TimePeriod.of(10));
+				break;
+			case "ATR":
+				returnString = this.avTechnicalIndicators.printATR(symbol, Interval.WEEKLY, TimePeriod.of(10));
+				break;
+			}
+		} catch (Exception e) {
+			returnString = "Something went wrong with retrieving data for " + symbol + 
+					".\nPlease check the symbol and your internet connection and try again." +
+					"\nDeveloper Notes: See exception in Model.accessAVTechnicalIndicators";
 		}
+		System.out.println("Reached");
 		this.updateTextArea(viewMain, returnString);
 		viewMain.getCenterPanel().changeMetaInformation("Showing " + tiType + " information for " + symbol);
 	}

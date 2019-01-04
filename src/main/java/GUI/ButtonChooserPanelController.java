@@ -22,6 +22,8 @@ public class ButtonChooserPanelController implements EventHandler<ActionEvent>{
 	public void handle(ActionEvent event) {
 		String command = ((Button) event.getSource()).getId();
 		String symbol = this.viewMain.getSymbolPanel().getSymbol();
+		this.viewMain.getSymbolPanel().setSymbolToUppercase();
+		symbol = symbol.toUpperCase();
 		
 		// Check to see if symbol is of valid length
 		if(symbol.length() > 0) {

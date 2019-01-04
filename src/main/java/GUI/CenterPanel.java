@@ -18,7 +18,9 @@ public class CenterPanel extends BorderPane{
 		this.textArea = new TextArea("Enter a symbol on the left to get started");
 		this.textArea.setEditable(false);
 		this.graphButton = new Button("Show Graph");
+		this.graphButton.setDisable(true);
 		this.rawDataButton = new Button("Raw Data");
+		this.rawDataButton.setDisable(true);
 		this.metaInformation = new Label();
 		
 		this.toolbar = new HBox();

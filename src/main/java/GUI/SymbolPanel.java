@@ -25,4 +25,9 @@ public class SymbolPanel extends VBox{
 	public String getSymbol() {
 		return this.symbol.getText();
 	}
+	
+	// Called from ButtonChooserPanelController, changes any lowercase letters to uppercase
+	public void setSymbolToUppercase() {
+		this.symbol.setText(this.symbol.getText().toUpperCase());
+	}
 }
