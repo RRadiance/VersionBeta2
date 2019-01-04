@@ -1,5 +1,8 @@
 package GUI;
 
+import org.patriques.input.technicalindicators.Interval;
+import org.patriques.input.technicalindicators.SeriesType;
+import org.patriques.input.technicalindicators.TimePeriod;
 import org.patriques.input.timeseries.OutputSize;
 
 import AlphaVantageInterface.AVAccessor;
@@ -87,8 +90,31 @@ public class Model {
 	}
 	
 	public void accessAVTechnicalIndicators(ViewMain viewMain, String symbol, String tiType) {
-		System.out.println(symbol);
-		System.out.println(tiType);
+//		System.out.println(symbol);
+//		System.out.println(tiType);
+		String returnString = "";
+		switch(tiType) {
+		case "SMA":
+			returnString = this.avTechnicalIndicators.printSMA(symbol, Interval.WEEKLY, TimePeriod.of(10), SeriesType.CLOSE);
+			break;
+		case "EMA":
+			returnString = this.avTechnicalIndicators.printEMA(symbol, Interval.WEEKLY, TimePeriod.of(10), SeriesType.CLOSE);
+			break;
+		case "MACD":
+			returnString = this.avTechnicalIndicators.printMACD(symbol, Interval.WEEKLY);
+			break;
+		case "-DI":
+			returnString = this.avTechnicalIndicators.printMinusDI(symbol, Interval.WEEKLY, TimePeriod.of(10));
+			break;
+		case "+DI":
+			returnString = this.avTechnicalIndicators.printPlusDI(symbol, Interval.WEEKLY, TimePeriod.of(10));
+			break;
+		case "ATR":
+			returnString = this.avTechnicalIndicators.printATR(symbol, Interval.WEEKLY, TimePeriod.of(10));
+			break;
+		}
+		this.updateTextArea(viewMain, returnString);
+		viewMain.getCenterPanel().changeMetaInformation("Showing " + tiType + " information for " + symbol);
 	}
 
 }

@@ -62,7 +62,7 @@ public class ViewMain implements EventHandler<ActionEvent>{
 
 		primary = new Scene(root);
 		stage.setScene(primary);
-		stage.setTitle("Version Beta");
+		stage.setTitle("Radiance - Version Beta");
 		stage.setResizable(false);
 		stage.setMinWidth(800);
 		stage.setMinHeight(500);

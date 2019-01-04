@@ -11,16 +11,19 @@ public class CenterPanel extends BorderPane{
 	private TextArea textArea;
 	private HBox toolbar;
 	private Button graphButton;
+	private Button rawDataButton;
 	private Label metaInformation;
-
+	
 	public CenterPanel(Model model) {
 		this.textArea = new TextArea("Enter a symbol on the left to get started");
 		this.textArea.setEditable(false);
 		this.graphButton = new Button("Show Graph");
+		this.rawDataButton = new Button("Raw Data");
 		this.metaInformation = new Label();
 		
 		this.toolbar = new HBox();
 		this.toolbar.getChildren().add(this.graphButton);
+		this.toolbar.getChildren().add(this.rawDataButton);
 		this.toolbar.getChildren().add(this.metaInformation);
 		
 		this.setTop(toolbar);

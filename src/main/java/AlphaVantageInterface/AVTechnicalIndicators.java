@@ -195,5 +195,125 @@ public class AVTechnicalIndicators {
 		    }
 	}
 	
+	public String printSMA(String symbol, Interval interval, TimePeriod timePeriod, SeriesType seriesType) {
+		String returnString = "";
+		try {
+			SMA response = ti.sma(symbol, interval, timePeriod, seriesType);
+			Map<String, String> metaData = response.getMetaData();
+		    returnString += "Symbol: " + metaData.get("1: Symbol") + "\n";
+		    returnString += "Indicator: " + metaData.get("2: Indicator") + "\n";
+		    
+		    // IndicatorData stored in output/technicalindicators/data/IndicatorData
+		    List<IndicatorData> smaData = response.getData();
+		    for (IndicatorData data : smaData) {
+				returnString += "date:     " + data.getDateTime() + "\n";
+				returnString += "sma:     " + data.getData() + "\n";
+		    }
+		} catch (AlphaVantageException e) {
+			System.out.println("something went wrong");
+		}
+		return returnString;
+	}
 	
+	public String printEMA(String symbol, Interval interval, TimePeriod timePeriod, SeriesType seriesType) {
+		String returnString = "";
+		try {
+			EMA response = ti.ema(symbol, interval, timePeriod, seriesType);
+			Map<String, String> metaData = response.getMetaData();
+			returnString += "Symbol: " + metaData.get("1: Symbol") + "\n";
+		    returnString += "Indicator: " + metaData.get("2: Indicator") + "\n";
+		    
+		    // IndicatorData stored in output/technicalindicators/data/IndicatorData
+		    List<IndicatorData> emaData = response.getData();
+		    for (IndicatorData data : emaData) {
+		    	returnString += "date:     " + data.getDateTime() + "\n";
+				returnString += "ema:     " + data.getData() + "\n";
+		    }
+		} catch (AlphaVantageException e) {
+			System.out.println("something went wrong");
+		}
+		return returnString;
+	}
+	
+	public String printPlusDI(String symbol, Interval interval, TimePeriod timePeriod) {
+		String returnString = "";
+		try {
+			PLUS_DI response = ti.plus_di(symbol, interval, timePeriod);
+			Map<String, String> metaData = response.getMetaData();
+			returnString += "Symbol: " + metaData.get("1: Symbol") + "\n";
+		    returnString += "Indicator: " + metaData.get("2: Indicator") + "\n";
+		    
+		    // IndicatorData stored in output/technicalindicators/data/IndicatorData
+		    List<IndicatorData> plusDiData = response.getData();
+		    for (IndicatorData data : plusDiData) {
+		    	returnString += "date:     " + data.getDateTime() + "\n";
+				returnString += "plus_di:     " + data.getData() + "\n";
+		    }
+		} catch (AlphaVantageException e) {
+			System.out.println("something went wrong");
+		}
+		return returnString;
+	}
+	
+	public String printMinusDI(String symbol, Interval interval, TimePeriod timePeriod) {
+		String returnString = "";
+		try {
+			MINUS_DI response = ti.minus_di(symbol, interval, timePeriod);
+			Map<String, String> metaData = response.getMetaData();
+			returnString += "Symbol: " + metaData.get("1: Symbol") + "\n";
+		    returnString += "Indicator: " + metaData.get("2: Indicator") + "\n";
+		    
+		    // IndicatorData stored in output/technicalindicators/data/IndicatorData
+		    List<IndicatorData> minusDiData = response.getData();
+		    for (IndicatorData data :minusDiData) {
+		    	returnString += "date:     " + data.getDateTime() + "\n";
+				returnString += "minus_di:     " + data.getData() + "\n";
+		    }
+		} catch (AlphaVantageException e) {
+			System.out.println("something went wrong");
+		}
+		return returnString;
+	}
+	
+	public String printATR(String symbol, Interval interval, TimePeriod timePeriod) {
+		String returnString = "";
+		try {
+			ATR response = ti.atr(symbol, interval, timePeriod);
+			Map<String, String> metaData = response.getMetaData();
+			returnString += "Symbol: " + metaData.get("1: Symbol") + "\n";
+		    returnString += "Indicator: " + metaData.get("2: Indicator") + "\n";
+		    
+		    // IndicatorData stored in output/technicalindicators/data/IndicatorData
+		    List<IndicatorData> atrData = response.getData();
+		    for (IndicatorData data: atrData) {
+		    	returnString += "date:     " + data.getDateTime() + "\n";
+				returnString += "atr:     " + data.getData() + "\n";
+		    }
+		} catch (AlphaVantageException e) {
+			System.out.println("something went wrong");
+		}
+		return returnString;
+	}
+	
+	public String printMACD(String symbol, Interval interval) {
+		String returnString = "";
+		try {
+		      MACD response = ti.macd(symbol, interval, TimePeriod.of(10), SeriesType.CLOSE, null, null, null);
+		      Map<String, String> metaData = response.getMetaData();
+		      returnString += "Symbol: " + metaData.get("1: Symbol") + "\n";
+			    returnString += "Indicator: " + metaData.get("2: Indicator") + "\n";
+
+		      //MACDData stored in output/technicalindicators/data/MACDData.java
+		      List<MACDData> macdData = response.getData();
+		      for (MACDData data: macdData) {
+		    	returnString += "date:     " + data.getDateTime() + "\n";
+		        returnString += "MACD Histogram: " + data.getHist() + "\n";
+		        returnString += "MACD Signal:    " + data.getSignal() + "\n";
+		        returnString += "MACD:           " + data.getMacd() + "\n";
+		      }
+		    } catch (AlphaVantageException e) {
+		      System.out.println("something went wrong");
+		    }
+		return returnString;
+	}
 }
