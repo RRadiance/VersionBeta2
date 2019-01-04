@@ -14,7 +14,7 @@ public class CenterPanel extends BorderPane{
 	private Label metaInformation;
 
 	public CenterPanel(Model model) {
-		this.textArea = new TextArea("Default Text");
+		this.textArea = new TextArea("Enter a symbol on the left to get started");
 		this.textArea.setEditable(false);
 		this.graphButton = new Button("Show Graph");
 		this.metaInformation = new Label();

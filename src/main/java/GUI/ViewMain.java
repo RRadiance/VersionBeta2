@@ -67,7 +67,10 @@ public class ViewMain implements EventHandler<ActionEvent>{
 		stage.setMinWidth(800);
 		stage.setMinHeight(500);
 		stage.show();
-
+		
+		root.requestFocus();
+		// Requests input focus on the BorderPane. Without this, the focus would be on the symbol textfield 
+		// which is undesired as the user would not see the prompt text
 		
 	}
 
