@@ -9,6 +9,13 @@ import AlphaVantageInterface.AVAccessor;
 import AlphaVantageInterface.AVTechnicalIndicators;
 import AlphaVantageInterface.AVTimeSeries;
 
+/**
+ * The Model is controlled by the Controllers and manipulates the graphical view components.
+ * All API accesses are also done through the Model.
+ * 
+ * @author matthewhuynh
+ *
+ */
 public class Model {
 	private AVAccessor avAccessor;
 	private AVTimeSeries avTimeSeries;
@@ -20,11 +27,14 @@ public class Model {
 		avTechnicalIndicators = new AVTechnicalIndicators(avAccessor);
 	}
 	
+	/**
+	 * Updates the raw data text area.
+	 * 
+	 * @param viewMain
+	 * @param text
+	 */
 	public void updateTextArea(ViewMain viewMain, String text) {
-		// text = "Test";
 		viewMain.getCenterPanel().setText(text);
-//		AVTimeSeries ts = new AVTimeSeries(avAccessor);
-//		ts.accessIntraday("AAPL", Interval.ONE_MIN, OutputSize.COMPACT);
 	}
 	
 	/**
@@ -50,7 +60,7 @@ public class Model {
 	}
 	
 	/**
-	 * Determines what type of data the user would like to see by checking
+	 * Determines what type of time series data the user would like to see by checking
 	 * which radio button they have selected. Accesses the AV Interface, calling
 	 * the appropriate method in AVTimeSeries.
 	 * 
@@ -91,6 +101,14 @@ public class Model {
 		viewMain.getCenterPanel().changeMetaInformation("Showing " + timeType + " information for " + symbol);
 	}
 
+	/**
+	 * Determines what type of technical indicator data the user would 
+	 * like to see by checking hich radio button they have selected. 
+	 * Accesses the AV Interface, calling the appropriate method in AVTechnicalIndicators.
+	 * 
+	 * @param symbol
+	 * @param timeType
+	 */
 	public void accessAVTechnicalIndicators(ViewMain viewMain, String symbol, String tiType) {
 //		System.out.println(symbol);
 //		System.out.println(tiType);

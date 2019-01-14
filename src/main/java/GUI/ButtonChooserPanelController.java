@@ -6,6 +6,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Controller for the buttons in ButtonChooserPanel.
+ * 
+ * @author matthewhuynh
+ *
+ */
 public class ButtonChooserPanelController implements EventHandler<ActionEvent>{
 	private Model model;
 	private ViewMain viewMain;
@@ -16,7 +22,7 @@ public class ButtonChooserPanelController implements EventHandler<ActionEvent>{
 	}
 	
 	/**
-	 * handler to handle the ActionEvent for a button in ButtonChooserPanel
+	 * Handler to handle the ActionEvent for a button in ButtonChooserPanel
 	 */
 	@Override
 	public void handle(ActionEvent event) {
@@ -38,6 +44,7 @@ public class ButtonChooserPanelController implements EventHandler<ActionEvent>{
 				break;
 			}
 		}
+		// Otherwise, displays error dialog to user.
 		else {
 			createErrorDialog();
 		}

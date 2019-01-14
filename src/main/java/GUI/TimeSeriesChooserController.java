@@ -4,6 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
+/**
+ * Controls TimeSeriesChooserController, handling any button events and
+ * checking which radio button (each representing a time series interval)
+ * the user has chosen.
+ * 
+ * @author matthewhuynh
+ *
+ */
 public class TimeSeriesChooserController implements EventHandler<ActionEvent> {
 	private Model model;
 	private TimeSeriesChooser tsc;

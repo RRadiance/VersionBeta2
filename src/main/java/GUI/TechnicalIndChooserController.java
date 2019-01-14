@@ -4,6 +4,14 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.control.Button;
 
+/**
+ * Controls TechnicalIndicatorChooser, handling any button events and
+ * checking which radio button (each representing a technical indicator)
+ * the user has chosen.
+ * 
+ * @author matthewhuynh
+ *
+ */
 public class TechnicalIndChooserController implements EventHandler<ActionEvent> {
 	private Model model;
 	private TechnicalIndicatorChooser tic;

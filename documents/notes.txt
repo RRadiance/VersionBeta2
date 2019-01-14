@@ -1,0 +1,29 @@
+Notes for AlphaVantage API:
+To see source files: https://github.com/patriques82/alphavantage4j/tree/master/src/main/java/org/patriques
+You can also hover over the corresponding code in Eclipse to see where it is from.
+
+Stock Time Series
+
+Intraday:
+Interval parameter:
+INTERVAL.ONE_MIN (FIVE/TEN/FIFTEEN/THIRTY/SIXTY)
+
+
+To Do Next: (Next Sprint):
+- Graph function
+- Table function (check java fx)
+- Revamp GUI with JavaFX wrappers
+- SQL databasing
+- API Access to financial data
+
+
+Links used:
+https://www.alphavantage.co/documentation/#time-series-data
+https://github.com/patriques82/alphavantage4j
+https://financialmodelingprep.com/developer/docs
+
+
+Dependencies on Mac:
+- Installed Gradle plugin on Eclipse (this is a Gradle project)
+- Needed to change project settings to use JRE 1.8
+- Uses AlphaVantage API

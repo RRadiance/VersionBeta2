@@ -3,6 +3,13 @@ package GUI;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
+/**
+ * ButtonChooserPanel contains buttons that allow the user to request
+ * data for a particular stock symbol.
+ * 
+ * @author matthewhuynh
+ *
+ */
 public class ButtonChooserPanel extends VBox{
 	private ViewMain viewMain; // So we can talk to our parent or other components of the view
 	private Model model;

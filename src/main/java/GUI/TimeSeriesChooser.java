@@ -6,8 +6,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
+/**
+ * This creates a dialog box that allows the user to choose what
+ * time series interval they would like to see for a given stock
+ * symbol. The user uses radio buttons and buttons to make their
+ * decision.
+ * 
+ * @author matthewhuynh
+ *
+ */
 public class TimeSeriesChooser extends GridPane{
 	private ToggleGroup toggleGroup;
 	private Model model;

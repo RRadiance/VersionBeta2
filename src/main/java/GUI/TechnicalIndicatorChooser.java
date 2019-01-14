@@ -6,8 +6,16 @@ import javafx.scene.control.Label;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.VBox;
 
+/**
+ * This creates a dialog box that allows the user to choose what
+ * technical indicator they would like to see for a given stock
+ * symbol. The user uses radio buttons and buttons to make their
+ * decision.
+ * 
+ * @author matthewhuynh
+ *
+ */
 public class TechnicalIndicatorChooser extends GridPane{
 	private ToggleGroup toggleGroup;
 	private Model model;
@@ -18,7 +26,6 @@ public class TechnicalIndicatorChooser extends GridPane{
 		this.model = model;
 		this.setPadding(new Insets(10,10,10,10));
 		this.setVgap(10);
-		
 		
 		// Displays symbol the user has previously chosen
 		Label stockSymbol = new Label("Get data for: " + symbol.toUpperCase());
