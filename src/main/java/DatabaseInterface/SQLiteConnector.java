@@ -47,31 +47,31 @@ public class SQLiteConnector {
     }
     
     
-	/**
-     * Create a database with the specified name as fileName.
-     * Return true if the creation is successful, else false.
-     * 
-     * @param fileName the database file name
-     * @return boolean
-     */
-    public static Boolean createNewDatabase(String fileName) {
- 
-    	// We use a relative file path
-        String url = "jdbc:sqlite:databases/" + fileName;
- 
-        try (Connection conn = DriverManager.getConnection(url)) {
-            if (conn != null) {
-                DatabaseMetaData meta = conn.getMetaData();
-                System.out.println("The driver name is " + meta.getDriverName());
-                System.out.println("A new database has been created.");
-                return true;
-            }
-            return false;
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-            return false;
-        }
-    }
+//	/**
+//     * Create a database with the specified name as fileName.
+//     * Return true if the creation is successful, else false.
+//     * 
+//     * @param fileName the database file name
+//     * @return boolean
+//     */
+//    public static Boolean createNewDatabase(String fileName) {
+// 
+//    	// We use a relative file path
+//        String url = "jdbc:sqlite:databases/" + fileName;
+// 
+//        try (Connection conn = DriverManager.getConnection(url)) {
+//            if (conn != null) {
+//                DatabaseMetaData meta = conn.getMetaData();
+//                System.out.println("The driver name is " + meta.getDriverName());
+//                System.out.println("A new database has been created.");
+//                return true;
+//            }
+//            return false;
+//        } catch (SQLException e) {
+//            System.out.println(e.getMessage());
+//            return false;
+//        }
+//    }
  
     /**
      * Used to test this class
