@@ -75,6 +75,7 @@ public class Model {
 			switch (timeType) {
 			case "Daily":
 				returnString = this.avTimeSeries.printDaily(symbol, OutputSize.COMPACT); // OutputSize.FULL
+				this.avTimeSeries.packageDaily(symbol, OutputSize.COMPACT);
 				break;
 			case "Daily Adjusted":
 				returnString = this.avTimeSeries.printDailyAdjusted(symbol, OutputSize.COMPACT);

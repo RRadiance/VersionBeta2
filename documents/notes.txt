@@ -16,6 +16,15 @@ To Do Next: (Next Sprint):
 - SQL databasing
 - API Access to financial data
 
+Database workflow:
+- User inputs a stock
+- Check if that stock exists in the database
+- Check if the data that the user requests exists in the database
+( need to check if data for time ranges is valid, as recent time ranges would not have been updated)
+- Update the database if necessary
+- Get the required data from the database
+- Put into line chart and display linechart to user
+
 
 Links used:
 https://www.alphavantage.co/documentation/#time-series-data
